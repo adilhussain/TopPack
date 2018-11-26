@@ -1,0 +1,116 @@
+body, html{
+  height: 100%;
+  font-family: 'Roboto', sans-serif;
+  color: #FEFEFE;
+  background-color: #ff6666;
+}
+#app{
+  height: 100%;
+}
+
+.heading{
+  font-weight: 200;
+}
+.heading.current{
+  font-weight: 600;
+}
+.heading>a{
+  color: #FEFEFE;
+  text-decoration: none;
+}
+
+.custom-input{
+  height: 50px;
+  font-size: 20px;
+}
+.custom-form{
+  width: 100%;
+}
+.search-heading{
+  width: 100%;
+  font-weight: 400;
+  font-size: 18px;
+}
+.card{
+  color: #212121;
+  padding: 20px;
+}
+.result-name{
+  font-size: 25px;
+  font-weight: 200;
+  color: #000;
+  width: 100%;
+  text-align: center;
+}
+.result-owner{
+  font-size: 13px;
+  font-weight: 600;
+  width: 100%;
+  color: #1565C0;
+  text-align: center;
+}
+.result-description{
+  font-size: 15px;
+  font-weight: 400;
+  text-align: center;
+  color: #424242;
+}
+.result-date{
+  font-size: 10px;
+  font-weight: 600;
+  width: 100;
+  text-align: center;
+  color: #2E7D32;
+}
+.result-stats{
+  text-align: center;
+}
+.result-url{
+  text-align: center;
+  font-size: 10px;
+  font-weight: 600;
+}
+.btn-import{
+  text-decoration: none;
+  color: #EEE !important;
+}
+.alert-custom{
+  width: 450px;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+.appears-in{
+  font-size: 18px;
+  font-weight: 400;
+}
+.modal{
+  color: #212121;
+}
+.list-heading{
+  width: 100;
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
+}
+#package-list{
+  list-style: none;
+}
+.exists{
+  width: 32px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.searching-gif{
+  display: block;
+  margin: auto;
+  height: 50px;
+}
+.imported{
+  font-size: 12px;
+  font-weight: 600;
+  color: #66BB6A;
+}
+.fail-imported{
+  color: #F4511E;
+}

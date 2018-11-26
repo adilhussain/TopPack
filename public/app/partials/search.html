@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="row">
+    <h1 class="heading mt-5 current"><a href="/">Search Repositories</a></h1>
+    <h1 class="heading mt-5" style="padding-left: 50px;"><a style="color:#ff9999" href="#/packages">Top Packages</a></h1>
+    <form class="custom-form mt-3" ng-submit="startSearch()">
+      <input type="text" style="background:#ff9999;" class="form-control custom-input" name="keyword" ng-model="keyword" placeholder="Search for a javascript repository.." />
+    </form>
+    <img src="/img/searching.gif" ng-if="searching" class="searching-gif"/>
+    <div ng-if="results && !results[0]">
+          <h3 class="search-heading text-center mt-3">No javascript public repo found for <strong>{{searched_keyword}}</strong></h3>
+    </div>
+    <div ng-if="results && results[0]">
+      <h3 class="search-heading text-center mt-3">Here are the top public repositories for <strong>{{searched_keyword}}</strong></h3>
+      <div class="container mt-3">
+      <div class="row">
+        <div class="col-md-4" ng-repeat="result in results">
+          <div class="card mb-3" style="background:#ff9999;">
+            <h4 class="result-name"><b>{{result.name | uppercase}}</b></h4>
+            <img class="exists mb-1" src="/img/exists.png" ng-if="result.exists" />
+            <h4 class="result-owner" style="color:#ff4444;border:#ff2222" >by {{result.owner}}</h4>
+            <h4 class="result-date text-capitalize">updated on {{result.updated_at|date:mediumDate}}</h4>
+            <hr />
+            <h5 class="result-description">{{result.description}}</h5>
+            <a class="result-url" href="{{result.html_url}}" style="color:#ff4444;border:#ff2222" target="_blank">Visit Git Page</a>
+            <hr />
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-4 result-stats">
+                  <strong>{{result.stargazers_count}}</strong><br />
+                  Stars
+                </div>
+                <div class="col-4 result-stats">
+                  <strong>{{result.forks_count}}</strong><br />
+                  Forks
+                </div>
+                <div class="col-4 result-stats">
+                  <strong>{{result.watchers_count}}</strong><br />
+                  Watchers
+                </div>
+              </div>
+            </div>
+            <button class="btn btn-primary btn-import mt-2" style="background:#ff4444;border:#ff2222" id="button-{{result.item_no}}" ng-if="result.exists == undefined" ng-click="importPackages(result.name, result.owner, result.description,result.html_url, result.item_no);">Import</button>
+            <img id="img-{{result.item_no}}" src="/img/searching.gif" class="searching-gif mt-2 d-none"/>
+            <div id="success-{{result.item_no}}" class="imported text-center text-uppercase mt-2 d-none">Imported</div>
+            <div id="fail-{{result.item_no}}" class="imported fail-imported text-center text-uppercase mt-2 d-none"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

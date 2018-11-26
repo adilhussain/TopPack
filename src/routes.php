@@ -11,6 +11,7 @@ $app->get('/', function (Request $request, Response $response, array $args) {
 });
 
 $app->get('/packages/top', TopController::class);
+$app->get('/packages/all', TopController::class, ':allPackages');
 
 $app->get('/packages/{language}', SearchController::class);
 

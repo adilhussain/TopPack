@@ -10,6 +10,10 @@ app.config(function($routeProvider) {
       controller: 'TopPackageCtrlr',
       templateUrl: '/app/partials/top.html'
     })
+    .when('/all_packages', {
+      controller: 'TopPackageCtrlrAll',
+      templateUrl: '/app/partials/top.html'
+    })
     .otherwise({
       redirectTo: '/search'
     });

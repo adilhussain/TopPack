@@ -17,7 +17,7 @@ app.controller('SearchCtrlr', function($scope, $http) {
     }
   };
 
-  $scope.importPackages = function(name, owner, description, html_url, item_no) {
+  $scope.importPackages = function(name, owner, description, html_url, item_no, stargazers_count, watchers_count, forks_count) {
     $("#button-" + item_no).addClass('d-none');
     $("#img-" + item_no).removeClass('d-none');
     $http({
@@ -27,7 +27,10 @@ app.controller('SearchCtrlr', function($scope, $http) {
         url: html_url,
         owner: owner,
         description: description,
-        name: name
+        name: name,
+        stargazers_count: stargazers_count,
+        watchers_count: watchers_count,
+        forks_count: forks_count
       }
     }).then(function successCallback(response) {
       if (response.data.error) {
@@ -50,6 +53,19 @@ app.controller('TopPackageCtrlr', function($scope, $http) {
     method: 'GET',
     url: '/packages/top'
   }).then(function successCallback(response) {
+    $scope.results = response.data;
+  }, function errorCallback(response) {
+
+  });
+});
+
+
+app.controller('TopPackageCtrlrAll', function($scope, $http) {
+  $http({
+    method: 'GET',
+    url: '/packages/all'
+  }).then(function successCallback(response) {
+    debugger;
     $scope.results = response.data;
   }, function errorCallback(response) {
 

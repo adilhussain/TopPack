@@ -44,7 +44,7 @@ class ExternalAPIHandler
     }
 
     // check if there is a package.json and fetch it
-    public function getPackageDotJSON(string $url, string $owner, string $description, string $name) {
+    public function getPackageDotJSON(string $url, string $owner, string $description, string $name, string $stargazers_count, string $watchers_count, string $forks_count) {
         $content_url = 'https://api.github.com/repos/'.str_replace('https://github.com/', '', $url).'/contents/package.json';
 
         $client = new Client();
@@ -73,6 +73,10 @@ class ExternalAPIHandler
           $repository['owner'] = $owner;
           $repository['description'] = $description;
           $repository['url'] = $url;
+          $repository['forks_count'] = $forks_count;
+          $repository['stargazers_count'] = $stargazers_count;
+          $repository['watchers_count'] = $watchers_count;
+
           return $repository;
         }else{
           return ['error' => true, 'message' => 'There is an error connecting to Github.'];

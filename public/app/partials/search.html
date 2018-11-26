@@ -16,7 +16,7 @@
         <div class="col-md-4" ng-repeat="result in results">
           <div class="card mb-3" style="background:#ff9999;">
             <h4 class="result-name"><b>{{result.name | uppercase}}</b></h4>
-            <img class="exists mb-1" src="/img/exists.png" ng-if="result.exists" />
+            <img title="Already Imported" class="exists mb-1" src="/img/exists.png" ng-if="result.exists" />
             <h4 class="result-owner" style="color:#ff4444;border:#ff2222" >by {{result.owner}}</h4>
             <h4 class="result-date text-capitalize">updated on {{result.updated_at|date:mediumDate}}</h4>
             <hr />
@@ -39,7 +39,7 @@
                 </div>
               </div>
             </div>
-            <button class="btn btn-primary btn-import mt-2" style="background:#ff4444;border:#ff2222" id="button-{{result.item_no}}" ng-if="result.exists == undefined" ng-click="importPackages(result.name, result.owner, result.description,result.html_url, result.item_no);">Import</button>
+            <button class="btn btn-primary btn-import mt-2" style="background:#ff4444;border:#ff2222" id="button-{{result.item_no}}" ng-if="result.exists == undefined" ng-click="importPackages(result.name, result.owner, result.description,result.html_url, result.item_no, result.stargazers_count, result.watchers_count, result.forks_count);">Import</button>
             <img id="img-{{result.item_no}}" src="/img/searching.gif" class="searching-gif mt-2 d-none"/>
             <div id="success-{{result.item_no}}" class="imported text-center text-uppercase mt-2 d-none">Imported</div>
             <div id="fail-{{result.item_no}}" class="imported fail-imported text-center text-uppercase mt-2 d-none"></div>

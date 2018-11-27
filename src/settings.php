@@ -16,7 +16,7 @@ return [
             'level' => \Monolog\Logger::DEBUG,
         ],
         'pdo' => [
-          'engine' => 'mysql',
+          'engine' => getenv('ENVIRONMENT') != 'DEV' ? 'pgsql' : 'mysql',
           'host' => 'localhost',
           'username' => 'root',
           'password' => 'root',

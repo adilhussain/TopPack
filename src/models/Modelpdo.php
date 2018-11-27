@@ -16,6 +16,12 @@ public $password = 'root';
 
     protected static function getPDO() {
         if (!isset(self::$pdo)) {
+            $env = getenv('ENVIRONMENT');
+            if($env != "DEV"){
+              $dsn = "pgsql:host=localhost;dbname=toppack";
+            }else{
+              $dsn = "mysql:host=localhost;dbname=toppack";
+            }
             $dsn = "mysql:host=localhost;dbname=toppack";
             self::$pdo = new PDO($dsn, 'root', 'root');
 

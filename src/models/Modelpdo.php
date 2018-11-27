@@ -18,12 +18,21 @@ public $password = 'root';
         if (!isset(self::$pdo)) {
             $env = getenv('ENVIRONMENT');
             if($env != "DEV"){
-              $dsn = "pgsql:host=localhost;dbname=toppack";
+              $db = parse_url(getenv("DATABASE_URL"));
+
+              $pdo = new PDO("pgsql:" . sprintf(
+                  "host=%s;port=%s;user=%s;password=%s;dbname=%s",
+                  $db["host"],
+                  $db["port"],
+                  $db["user"],
+                  $db["pass"],
+                  ltrim($db["path"], "/")
+              ));
+              self::$pdo = $pdo;
             }else{
               $dsn = "mysql:host=localhost;dbname=toppack";
+              self::$pdo = new PDO($dsn, 'root', 'root');
             }
-            $dsn = "mysql:host=localhost;dbname=toppack";
-            self::$pdo = new PDO($dsn, 'root', 'root');
 
             // $container = $app->getContainer();
              // $db = $container['settings']['db'];

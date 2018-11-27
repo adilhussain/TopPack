@@ -16,7 +16,6 @@ public $password = 'root';
 
     protected static function getPDO() {
         if (!isset(self::$pdo)) {
-
             $dsn = "mysql:host=localhost;dbname=toppack";
             self::$pdo = new PDO($dsn, 'root', 'root');
 
@@ -81,17 +80,25 @@ public $password = 'root';
         }
         return null;
     }
-    public static function getAll() {
+    public static function getAll($pdo) {
         $tableName = self::getTableName();
-        $q = "SELECT * FROM {$tableName} ";
-        $sth = self::getPDO()->prepare($q);
-        $sth->execute();
-        $data = $sth->fetchAll(PDO::FETCH_ASSOC);
+        error_log("Table:: " . $tableName );
+        $q = "SELECT * FROM {$tableName}";
+        // $pdo = $pdo || self::getPDO();
+        $sth = $pdo->prepare($q);
+        try{
+          $sth->execute();
+          $data = $sth->fetchAll();
+        }catch(\PDOException $e){
+          error_log($e->getMessage(), 4);
+        }
         if ($data) {
             $models = array();
             foreach ($data as $d) {
                 $modelName = self::getFullModelName();
-                $models[] = new $modelName($d);
+                                error_log($modelName, 4);
+                $models[] = new $modelName($pdo, $d);
+
             }
             return $models;
         }
@@ -120,13 +127,19 @@ public $password = 'root';
     private $fields = array();
     public function __construct($schema, $pdo, $data = false) {
       self::$pdo = $pdo;
-        $this->fields['id'] = array('value' => null, 'type' => PDO::PARAM_INT);
+        error_log("111");
+        $this->fields[strtolower(self::getTableName()) . '_id'] = array('value' => null, 'type' => PDO::PARAM_INT);
         foreach ($schema as $name => $type) {
+            error_log($name);
+            error_log($type);
             $this->fields[$name] = array('value' => null, 'type' => $type);
         }
         if ($data) {
             foreach ($data as $column => $value) {
+              error_log($column);
+              error_log($value);
                 $prop = self::getPropertyName($column);
+                // var_dump($this->fields[$prop]);
                 $this->fields[$prop]['value'] = $value;
             }
         }

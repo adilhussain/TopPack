@@ -1,4 +1,4 @@
-var app = angular.module("topPackApp", ['ngRoute']);
+var app = angular.module("topPackApp", ['ngRoute', 'ui.bootstrap']);
 
 app.config(function($routeProvider) {
   $routeProvider
@@ -13,6 +13,10 @@ app.config(function($routeProvider) {
     .when('/all_packages', {
       controller: 'TopPackageCtrlrAll',
       templateUrl: '/app/partials/top.html'
+    })
+    .when('/package', {
+      controller: 'PackageCtrlr',
+      templateUrl: '/app.partials/top.html'
     })
     .otherwise({
       redirectTo: '/search'

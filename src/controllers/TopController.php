@@ -10,7 +10,7 @@ class TopController{
       $this->ci = $ci;
   }
 
-  public function __invoke($request, $response, $args) {
+  public function topPackages($request, $response, $args) {
       $this->ci->logger->info("Slim-Skeleton '/packages/top' route");
 
       $data = $this->ci->StorageHandler->getTopPackages($this->ci->pdo);

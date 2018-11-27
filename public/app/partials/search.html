@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <h1 class="heading mt-5 current"><a href="/">Search Repositories</a></h1>
-    <h1 class="heading mt-5" style="padding-left: 50px;"><a style="color:#ff9999" href="#/packages">Top Packages</a></h1>
+    <h1 class="heading mt-5" style="padding-left: 50px;"><a style="color:#ff9999" href="#/packages">Top 10 Packages</a></h1>
     <form class="custom-form mt-3" ng-submit="startSearch()">
-      <input type="text" style="background:#ff9999;" class="form-control custom-input" name="keyword" ng-model="keyword" placeholder="Search for a javascript repository.." />
+      <input type="text" style="background:light_green;" class="form-control custom-input" name="keyword" ng-model="keyword" placeholder="Search for a javascript repository.." />
     </form>
     <img src="/img/searching.gif" ng-if="searching" class="searching-gif"/>
     <div ng-if="results && !results[0]">
@@ -12,40 +12,79 @@
     <div ng-if="results && results[0]">
       <h3 class="search-heading text-center mt-3">Here are the top public repositories for <strong>{{searched_keyword}}</strong></h3>
       <div class="container mt-3">
+
+
       <div class="row">
-        <div class="col-md-4" ng-repeat="result in results">
-          <div class="card mb-3" style="background:#ff9999;">
-            <h4 class="result-name"><b>{{result.name | uppercase}}</b></h4>
-            <img title="Already Imported" class="exists mb-1" src="/img/exists.png" ng-if="result.exists" />
-            <h4 class="result-owner" style="color:#ff4444;border:#ff2222" >by {{result.owner}}</h4>
-            <h4 class="result-date text-capitalize">updated on {{result.updated_at|date:mediumDate}}</h4>
-            <hr />
-            <h5 class="result-description">{{result.description}}</h5>
-            <a class="result-url" href="{{result.html_url}}" style="color:#ff4444;border:#ff2222" target="_blank">Visit Git Page</a>
-            <hr />
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-4 result-stats">
-                  <strong>{{result.stargazers_count}}</strong><br />
-                  Stars
-                </div>
-                <div class="col-4 result-stats">
-                  <strong>{{result.forks_count}}</strong><br />
-                  Forks
-                </div>
-                <div class="col-4 result-stats">
-                  <strong>{{result.watchers_count}}</strong><br />
-                  Watchers
-                </div>
-              </div>
-            </div>
-            <button class="btn btn-primary btn-import mt-2" style="background:#ff4444;border:#ff2222" id="button-{{result.item_no}}" ng-if="result.exists == undefined" ng-click="importPackages(result.name, result.owner, result.description,result.html_url, result.item_no, result.stargazers_count, result.watchers_count, result.forks_count);">Import</button>
-            <img id="img-{{result.item_no}}" src="/img/searching.gif" class="searching-gif mt-2 d-none"/>
-            <div id="success-{{result.item_no}}" class="imported text-center text-uppercase mt-2 d-none">Imported</div>
-            <div id="fail-{{result.item_no}}" class="imported fail-imported text-center text-uppercase mt-2 d-none"></div>
-          </div>
-        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4" ng-repeat="result in results">
+                        <div class="image-flip" ontouchstart="this.classList.toggle('hover');">
+                            <div class="mainflip">
+                                <div class="frontside">
+                                    <div class="card">
+                                        <div class="card-body text-center">
+                                            <p><img class=" img-fluid" src={{result.avatar_url}} alt="card image"></p>
+                                            <h4 class="card-title">{{result.name | uppercase}}</h4>
+                                            <p class="card-text">by {{result.owner}}.</p>
+                                            <h4 class="result-date text-capitalize">updated on {{result.updated_at|date:mediumDate}}</h4>
+                                            <div class="card-footer">
+                                              <ul class="list-inline text-center">
+                                                  <li class="list-inline-item">
+                                                      <a class="social-icon text-xs-center" target="_blank" href="#" title="stars count">
+                                                          <i class="fa fa-star">{{" " + result.stargazers_count}}</i>
+                                                      </a>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <a class="social-icon text-xs-center" target="_blank" href="#" title="watchers count">
+                                                          <i class="fa fa-eye">{{" " + result.watchers_count}}</i>
+                                                      </a>
+                                                  </li>
+                                                  <li class="list-inline-item">
+                                                      <a class="social-icon text-xs-center" target="_blank" href="#" title="forks count">
+                                                          <i class="fa fa-anchor">{{" " + result.forks_count}}</i>
+                                                      </a>
+                                                  </li>
+                                              </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="backside">
+                                    <div class="card">
+                                        <div class="card-body text-center mt-4">
+                                            <h4 class="card-title"><a href={{result.html_url}} target="_blank">{{result.name | uppercase}}</a></h4>
+                                            <p class="card-text">{{result.description}}.</p>
+                                        </div>
+                                        <ul class="list-inline text-center">
+                                          <li class="list-inline-item">
+                                              <a class="social-icon text-xs-center" target="_blank" href="#" title="stars count">
+                                                  <i class="fa fa-star">{{" " + result.stargazers_count}}</i>
+                                              </a>
+                                          </li>
+                                          <li class="list-inline-item">
+                                              <a class="social-icon text-xs-center" target="_blank" href="#" title="watchers count">
+                                                  <i class="fa fa-eye">{{" " + result.watchers_count}}</i>
+                                              </a>
+                                          </li>
+                                          <li class="list-inline-item">
+                                              <a class="social-icon text-xs-center" target="_blank" href="#" title="forks count">
+                                                  <i class="fa fa-anchor">{{" " + result.forks_count}}</i>
+                                              </a>
+                                          </li>
+                                        </ul>
+                                        <div class="card-footer">
+                                          <img id="img-{{result.item_no}}" src="/img/searching.gif" class="searching-gif mt-2 d-none"/>
+                                          <button class="btn btn-success btn-block" style="background:#ff4444;border:#ff2222" id="button-{{result.item_no}}" ng-if="result.exists == undefined" ng-click="importPackages(result.name, result.owner, result.description,result.html_url, result.item_no, result.stargazers_count, result.watchers_count, result.forks_count);">Import</button>
+                                          <h4 class="btn btn-success btn-block" style="background:#ff4444;border:#ff2222" id="button_1_-{{result.item_no}}" ng-if="result.exists">Already Imported</h4>
+                                          <div id="success-{{result.item_no}}" class="imported text-center text-uppercase mt-2 d-none">Imported</div>
+                                          <div id="fail-{{result.item_no}}" class="imported fail-imported text-center text-uppercase mt-2 d-none"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
       </div>
+
+
     </div>
     </div>
   </div>

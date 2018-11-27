@@ -36,7 +36,8 @@ class ExternalAPIHandler
           'stargazers_count' => $item->stargazers_count,
           'watchers_count' => $item->watchers_count,
           'owner' => $item->owner->login,
-          'item_no' => $counter
+          'item_no' => $counter,
+          'avatar_url' => $item->owner->avatar_url
         ];
         array_push($sanitized_results, $sanitized_item);
       }

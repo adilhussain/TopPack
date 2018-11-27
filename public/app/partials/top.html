@@ -1,6 +1,6 @@
-<div class="container">
+<!-- <div class="container">
     <h1 class="heading mt-5"><u><a href="/">Search Repositories</a></h1></u></br>
-    <div class="inline"><h1 class="heading mt-5 current" style="padding-left: 50px;"><a style="color:#4CAF50" href="#/packages">Top Packages</a></h1>
+    <div class="inline"><h1 class="heading mt-5 current" style="padding-left: 50px;"><a style="color:#4CAF50" href="#/packages">Top 10 Packages</a></h1>
     <h1 class="heading mt-5 inline" style="padding-left: 50px;"><a style="color:#4CAF90" href="#/all_packages">All Packages</a></h1></div>
     <div class="container mt-5">
       <div class="row">
@@ -11,4 +11,63 @@
       </ol>
       </div>
   </div>
-</div>
+</div> -->
+
+
+
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+      <a class="navbar-brand mr-auto mr-lg-0" href="#packages">Top Pack</a>
+
+      <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#packages">Top Packs <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#all_packages">All Packages</a>
+          </li>
+        </ul>
+      </div>
+
+      <form class="form-inline my-2 my-lg-0" ng-submit="startSearch()">
+                <input class="form-control mr-sm-2" type="text"  ng-model="filter_name" placeholder="Filter for a package" aria-label="Search">
+              </form>
+
+    </nav>
+
+    <main role="main" class="container">
+
+          <!-- <table class="table" style="margin-top:80px">
+            <tr ng-repeat="name in names.slice(((currentPage-1)*itemsPerPage), ((currentPage)*itemsPerPage))">
+              <td>{{name}}</td>
+            </tr>
+          </table>
+      View <select ng-model="viewby" ng-change="setItemsPerPage(viewby)"><option>3</option><option>5</option><option selected="selected">10</option><option>20</option><option>30</option><option>40</option><option>50</option></select> records at a time.
+
+          <pagination total-items="totalItems" ng-model="currentPage" ng-change="pageChanged()" class="pagination-sm" items-per-page="itemsPerPage"></pagination>
+          <pre>The selected page no: {{currentPage}}</pre>
+          <button class="btn btn-info" ng-click="setPage(3)">Set current page to: 3</button>
+
+          <hr />
+          <h4>Pager</h4>
+          <pager total-items="totalItems" ng-model="currentPage" items-per-page="itemsPerPage"></pager>
+
+          <hr />
+          <h4>Limit the maximum visible buttons</h4>
+          <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" items-per-page="itemsPerPage"></pagination>
+          <pagination total-items="totalItems" ng-model="currentPage" max-size="maxSize" class="pagination-sm" boundary-links="true" rotate="false" num-pages="numPages" items-per-page="itemsPerPage"></pagination>
+          <pre>Page: {{currentPage}} / {{numPages}}</pre> -->
+
+
+          <div class="mt-20 p-3 bg-white rounded shadow-sm" style="margin-top:80px">
+            <h6 class="border-bottom border-gray pb-2 mb-0">Recent updates</h6>
+            <div class="media text-muted pt-3" ng-repeat="name in names | filter :filter_name">
+              <p class="media-body pb-3 mb-0 small lh-125 border-bottom border-gray">
+                <strong class="d-block text-gray-dark">{{$index + 1 + " "}}<strong><a href="#package" id="package-{{$index}}">{{name | uppercase}}</a></strong>
+              </p>
+            </div>
+
+          </div>
+
+
+        </main>

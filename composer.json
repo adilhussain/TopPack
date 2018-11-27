@@ -19,8 +19,7 @@
         "guzzlehttp/guzzle": "^6.3"
     },
     "require-dev": {
-        "phpunit/phpunit": ">=4.8 < 6.0",
-        "heroku/heroku-buildpack-php": "*"
+        "phpunit/phpunit": ">=4.8 < 6.0"
     },
     "autoload-dev": {
         "psr-4": {

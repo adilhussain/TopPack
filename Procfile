@@ -1,1 +1,1 @@
-web: composer start
+web: vendor/bin/heroku-php-apache2 web/
